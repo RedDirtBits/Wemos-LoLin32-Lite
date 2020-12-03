@@ -19,6 +19,6 @@ I am generally comfortable, though still much to learn, with writing code for Mi
 
 # Next Steps
 
-The first step will be to simply set up the Wemos with one or two sensors and have it report data over MQTT. Once that code has been optimized as best _I_ can do, take it and freeze it into the MicroPython firmware.
+The first step will be to simply set up the Wemos with one or two sensors and have it report data over MQTT. Once that code has been optimized as _best I can do_, take it and freeze it into the MicroPython firmware.
 
 After that I will probably add more sensors and see how far I can push the board and just how much I can add to the firmware.
