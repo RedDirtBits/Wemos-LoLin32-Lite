@@ -11,7 +11,7 @@ This is a continuation of other, similar projects I work on such as
 
 My hope, as with the other projects, is to continue to learn and explore [MicroPython](https://micropython.org/) as well as [Python](https://www.python.org/). This project utilizes the Wemos LoLin32 Lite. My favorite board for anything that requires battery efficiency is the [TinyPico](https://www.tinypico.com/), however, I came across this board quite by accident and it too seems to have a reputation for being a good ESP32 board to use for any kind of battery powered project. It also comes with a standard LiPo battery connector and charging circuit. Whereas the TinyPico uses the ESP32 Pico D4 chip, the Wemos LoLin32 Lite uses the ESP32-DOWDQ6.
 
-As the TinyPico is slightly harder to get and a bit more expensive. I am going to work with this board and hope to find that it is a good compromise between the TinyPico's proven battery efficiency and something a bit more available.
+As the TinyPico is slightly harder to get and a bit more expensive, I am going to work with this board and hope to find that it is a good compromise between the TinyPico's proven battery efficiency and something a bit more available.
 
 The general idea for this particular board is to not only explore, to some extent, its battery utilization, but to also use it as a testing platform in which I can begin to experiment with freezing my code right into the MicroPython firmware.
 
