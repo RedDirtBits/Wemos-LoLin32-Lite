@@ -1,6 +1,6 @@
 # Wemos-LoLin32-Lite
 
-A project utilizing the Wemos-Mini-D1 Microprocessor. The purpose of which is to continue working with and learning Micropython and work out best practices, learn how to develop clean efficient code and hopefully do something relatively useful with it all.
+A project utilizing the Wemos-Mini-D1 Microcontroller. The purpose of which is to continue working with and learning Micropython and work out best practices, learn how to develop clean efficient code and hopefully do something relatively useful with it all.
 
 # Purpose
 
