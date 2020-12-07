@@ -1,35 +1,60 @@
+import utime
 import machine
 import onewire
-import utime
-import ds18x20
-
 
 from machine import I2C, Pin
-from bh1750 import BH1750  # Light Sensor
-from bmp180 import BMP180  # Pressure, Humidity, etc. Sensor
-from ccs811 import CCS811  # Environmetal sensor
 
-bus = I2C(scl=Pin(23), sda=Pin(19), freq=100000)
+# TODO
+# Group Sensors into classes, particularly I2C sensors
 
-
-def read_ds18b20(self):
-
-    sensor_wire = onewire.OneWire(machine.Pin(5))
-    temperature_sensor = ds18x20.DS18X20(sensor_wire)
-
-    sensor_address = temperature_sensor.scan().pop()
-    temperature_sensor.convert_temp()
-
-    utime.sleep_ms(500)
-
-    celcius = temperature_sensor.read_temp(sensor_address)
-    fahrenheit = (celcius * 1.8) + 32
-
-    return fahrenheit, celcius
+ic2bus = I2C(scl=Pin(23), sda=Pin(19), freq=100000)
 
 
-def read_bh1750():
+def get_temperature(pin):
 
-    sensor = BH1750(bus)
+    try:
 
-    return sensor.luminance(BH1750.ONCE_HIRES_1)
+        import ds18x20
+
+    except ImportError:
+
+        return 'Unable to import DS18x20 library.'
+
+    else:
+
+        sensor_wire = onewire.OneWire(machine.Pin(pin))
+        temperature_sensor = ds18x20.DS18X20(sensor_wire)
+
+        try:
+
+            sensor_address = temperature_sensor.scan().pop()
+
+        except IndexError:
+
+            return 'Check sensor. Unable to get sensor address.'
+
+        else:
+
+            temperature_sensor.convert_temp()
+
+            utime.sleep_ms(500)
+
+            celcius = temperature_sensor.read_temp(sensor_address)
+            fahrenheit = (celcius * 1.8) + 32
+
+            return fahrenheit, celcius
+
+
+def bh1750():
+
+    try:
+
+        from bh1750 import BH1750
+
+        sensor = BH1750(ic2bus)
+
+        return sensor.luminance(BH1750.ONCE_HIRES_1)
+
+    except ImportError:
+
+        return ImportError('Sensor library not found.')
