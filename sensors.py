@@ -4,9 +4,6 @@ import onewire
 
 from machine import I2C, Pin
 
-# TODO
-# Group Sensors into classes, particularly I2C sensors
-
 
 class I2CSensors:
 
@@ -20,6 +17,34 @@ class I2CSensors:
         self.sda = sda
         self.freq = freq
         self.i2cbus = I2C(scl=Pin(self.scl), sda=Pin(self.sda), freq=self.freq)
+
+    def scan_i2c(self):
+        """
+        scan_i2c: Scans the I2C bus for any connected devices
+
+        Returns:
+            dictionary: Device number, Decimal Address, Hexidecimal Address
+        """
+
+        bus = self.i2cbus
+        devices = bus.scan()
+
+        device_list = {}
+
+        if len(devices) == 0:
+
+            return 'No I2C devices found.'
+
+        else:
+
+            for number, device in enumerate(devices):
+
+                device_info = {'Device No.': number + 1,
+                               'Dec. Address': device, 'Hex Address': hex(device)}
+
+                device_list.update(device_info)
+
+        return device_list
 
     def bmp180(self):
         """
