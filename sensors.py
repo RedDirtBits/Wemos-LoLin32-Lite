@@ -61,12 +61,6 @@ class I2CSensors:
 
             from bmp180 import BMP180
 
-        except ImportError:
-
-            return ' BMP180 sensor library not found'
-
-        else:
-
             bus = self.i2cbus
             bmp180 = BMP180(bus)
             bmp180.oversample_sett = 2
@@ -81,17 +75,15 @@ class I2CSensors:
 
             return temperature_c, temperature_f, pressure_hpa, pressure_inhg, altitude_meters, altitude_feet
 
+        except ImportError:
+
+            return ' BMP180 sensor library not found'
+
     def bme280(self):
 
         try:
 
             from bme280 import BME280
-
-        except ImportError:
-
-            return 'BME280 sensor library not found'
-
-        else:
 
             bus = self.i2cbus
             bme280 = BME280(i2c=bus)
@@ -103,22 +95,28 @@ class I2CSensors:
 
             return temperature_c, temperature_f, pressure, humidity_percent
 
+        except ImportError:
+
+            return 'BME280 sensor library not found'
+
+        except OSError:
+
+            return 'BME280 does not exist'
+
     def bh1750(self):
 
         try:
 
             from bh1750 import BH1750
 
-        except ImportError:
-
-            return 'BH1750 sensor library not found'
-
-        else:
-
             bus = self.i2cbus
             bh1750 = BH1750(bus)
 
             return bh1750.luminance(BH1750.ONCE_HIRES_1)
+
+        except ImportError:
+
+            return 'BH1750 sensor library not found'
 
 
 def get_temperature(pin):
